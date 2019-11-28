@@ -377,6 +377,8 @@ after_parse({more, State}) ->
 
 update_flow(fin, _, State) ->
 	State#state{flow=infinity};
+update_flow(nofin, _, State=#state{flow=infinity}) ->
+	State;
 update_flow(nofin, Data, State=#state{flow=Flow0}) ->
 	State#state{flow=Flow0 - byte_size(Data)}.
 
